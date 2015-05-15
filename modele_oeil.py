@@ -30,7 +30,7 @@ k = 3.0
 
 #debut de la simulation
 env = Environnement(nb_pts, duree_stim, xA, yA, xS, yS)
-agent = Controleur(k)
+agent = Controleur(k, dt)
 
 #boucle de simulation
 for i in range(nb_pts-1): 

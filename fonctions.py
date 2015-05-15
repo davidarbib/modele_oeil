@@ -15,3 +15,7 @@ def rk4(y, t, dt, derivs):
   k3 = dt * derivs(y+k2, t*dt)
   y_next = y + (k0 + 2*k1 + 2*k2 + k3)/6
   return y_next
+
+def add(x):
+  return x[0]+x[1]
+  

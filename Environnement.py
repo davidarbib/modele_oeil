@@ -87,7 +87,6 @@ class Environnement:
       ySA = self.yS-self.yA
       if ySA==0:
 	ySA = 0.0000000000000000000000000000001
-      print np.arctan((self.xA-self.xS)/ySA)
       return np.arctan((self.xA-self.xS)/ySA)
       
   #fct update de l'angle
