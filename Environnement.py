@@ -1,5 +1,5 @@
 import numpy as np
-from fonctions import *
+from v_f_global import *
 
 '''-----------------------------------------------------------
 ---Entite regroupant l'agent et ses effecteurs et la cible----
@@ -44,32 +44,27 @@ class Environnement:
   ------Constructeur-------
   ----------------------'''
   
-  def __init__(self, nb_pts, duree_stim, ag_x, ag_y, cib_x, cib_y, eff_m = 0.05, eff_u1 = 1, eff_u2 = 1, eff_a = 2, p_theta = 0.0, v_theta = 0.0):
+  def __init__(self, ag_x, ag_y, dt, eff_m = 0.05, eff_u1 = 1, eff_u2 = 1, eff_a = 2, p_theta = 0.0, v_theta = 0.0):
     '''Classe Environnement : entite qui regroupe l'agent, la cible et leurs proprietes
     (attention : certaines proprietes nexisteront plus en version de stimulation live)
     '''
     
     self.xA = ag_x
     self.yA = ag_y
-    self.xS = cib_x
-    self.yS = cib_y
     self.m  = eff_m
     self.u1 = eff_u1 
     self.u2 = eff_u2
     self.a  = eff_a
         
-    self.y = np.zeros([nb_pts,2])
+    self.state= np.zeros([2,1])
     
-    #vecteur temporel
-    self.time = np.linspace(0, duree_stim, nb_pts)
-    
-    self.nb_pts = nb_pts
-    self.duree_stim = duree_stim
-    self.dt = duree_stim/float(nb_pts)
+    print self.state
+
+    self.dt = dt
     
     #init de la dynamique
-    self.y[0,0] = p_theta
-    self.y[0,1] = v_theta
+    self.state[0] = p_theta
+    self.state[1] = v_theta
   
   '''----------------------
   --------Methodes---------
@@ -95,15 +90,39 @@ class Environnement:
     g1 = (self._F1(state[0])+self._F2(state[0])-self.a*state[1])/self.m
     return np.array([g0, g1])
   
-  #calcul du mouvement de l'oeil
-  def _calcul(self, i):
-    self.y[i+1] = rk4(self.y[i], self.time[i], self.dt, self._up_theta)
-    return self.y 
-  
+  def step(self, t, x):
+    self.u1 = x[0]
+    self.u2 = x[1]
+    self.xS = x[2]
+    self.yS = x[3]
+    
+    #print [self.xS, self.yS]
+    
+    self.state = rk4(self.state, t, self.dt, self._up_theta)
+    
+    #print self.theta_etoile()
+    
+    psi = self.theta_etoile() - self.state[0]
+    return [psi, self.state[0]]
+'''  
   #update de l'environnement  
   def update(self, eff_u1, eff_u2, i):
     self.u1 = eff_u1
     self.u2 = eff_u2
     self._calcul(i)
+'''
+
+class Cible:
+  
+  xS = 0
+  yS = 0
+  dt = 0
+  
+  def __init__(self, xS, yS, dt):
+    self.xS = xS
+    self.yS = yS
     
+  
+  def posCible(self, t):
+    return [self.xS, self.yS]
  
