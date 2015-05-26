@@ -57,8 +57,6 @@ class Environnement:
     self.a  = eff_a
         
     self.state= np.zeros([2,1])
-    
-    print self.state
 
     self.dt = dt
     
@@ -90,6 +88,7 @@ class Environnement:
     g1 = (self._F1(state[0])+self._F2(state[0])-self.a*state[1])/self.m
     return np.array([g0, g1])
   
+  #fct appelee par rna
   def step(self, t, x):
     self.u1 = x[0]
     self.u2 = x[1]
@@ -104,13 +103,7 @@ class Environnement:
     
     psi = self.theta_etoile() - self.state[0]
     return [psi, self.state[0]]
-'''  
-  #update de l'environnement  
-  def update(self, eff_u1, eff_u2, i):
-    self.u1 = eff_u1
-    self.u2 = eff_u2
-    self._calcul(i)
-'''
+
 
 class Cible:
   
