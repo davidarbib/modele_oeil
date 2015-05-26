@@ -94,7 +94,6 @@ class Environnement:
     self.u2 = x[1]
     self.xS = x[2]
     self.yS = x[3]
-    print x[2]
     
     self.y[0] = rk4(self.y[0], t, self.dt, self._up_theta)
 
