@@ -9,7 +9,7 @@ duree_sim = 20.0
 dt = duree_sim/float(nb_pts-1)
 
 #nombre de neurones
-N = 100
+N = 500
 
 #position agent
 xA = 0

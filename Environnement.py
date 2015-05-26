@@ -56,13 +56,13 @@ class Environnement:
     self.u2 = eff_u2
     self.a  = eff_a
         
-    self.state= np.zeros([2,1])
+    self.y= np.zeros([1,2])
 
     self.dt = dt
     
     #init de la dynamique
-    self.state[0] = p_theta
-    self.state[1] = v_theta
+    self.y[0, 0] = p_theta
+    self.y[0, 1] = v_theta
   
   '''----------------------
   --------Methodes---------
@@ -77,10 +77,10 @@ class Environnement:
   
   #Position angulaire de la cible
   def theta_etoile(self):
-      ySA = self.yS-self.yA
-      if ySA==0:
-	ySA = 0.0000000000000000000000000000001
-      return np.arctan((self.xA-self.xS)/ySA)
+    ySA = self.yS-self.yA
+    if ySA==0:
+      ySA = 0.0000000000000000000000000000001
+    return np.arctan((self.xA-self.xS)/ySA)
       
   #fct update de l'angle
   def _up_theta(self, state, t):
@@ -95,14 +95,10 @@ class Environnement:
     self.xS = x[2]
     self.yS = x[3]
     
-    #print [self.xS, self.yS]
-    
-    self.state = rk4(self.state, t, self.dt, self._up_theta)
-    
-    #print self.theta_etoile()
-    
-    psi = self.theta_etoile() - self.state[0]
-    return [psi, self.state[0]]
+    self.y[0] = rk4(self.y[0], t, self.dt, self._up_theta)
+
+    psi = self.theta_etoile() - self.y[0, 0]
+    return [psi, self.y[0, 0]]
 
 
 class Cible:
