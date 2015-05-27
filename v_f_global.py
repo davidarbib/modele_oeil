@@ -19,12 +19,26 @@ yA = 0
 xS = -5
 yS = 0
 
+#Masse
+m = 0.05
+
+#Frottement
+a = 2
+
 #constante de raideur
 k = 3.0
 
 #bornes angulaires
 theta1 = np.pi/2.0
 theta2 = -1*np.pi/2.0
+
+#tension de depart
+u1 = 1.0
+u2 = 1.0
+
+#pos et vitesse de depart
+p_theta = 0.0
+v_theta = 0.0
 
 '''------------------------
 --------fonctions----------

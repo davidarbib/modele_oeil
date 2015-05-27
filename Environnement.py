@@ -44,7 +44,7 @@ class Environnement:
   ------Constructeur-------
   ----------------------'''
   
-  def __init__(self, ag_x, ag_y, dt, eff_m = 0.05, eff_u1 = 1, eff_u2 = 1, eff_a = 2, p_theta = 0.0, v_theta = 0.0):
+  def __init__(self, ag_x, ag_y, dt, eff_m, eff_u1, eff_u2, eff_a, p_theta, v_theta):
     '''Classe Environnement : entite qui regroupe l'agent, la cible et leurs proprietes
     (attention : certaines proprietes nexisteront plus en version de stimulation live)
     '''
@@ -56,7 +56,7 @@ class Environnement:
     self.u2 = eff_u2
     self.a  = eff_a
         
-    self.y= np.zeros([1,2])
+    self.y= np.zeros([1,2])   #variable d'etat de la dynamique
 
     self.dt = dt
     
