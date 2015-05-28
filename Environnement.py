@@ -18,9 +18,7 @@ class Environnement:
   p_theta = 0.0
   v_theta = 0.0
   
-  #angles max gauche et droite
-  theta1 = np.pi/2.0
-  theta2 = -1*np.pi/2.0
+ 
   
   #tension des ressorts (muscle gauche et muscle droit, respectivement)
   u1 = 0
@@ -70,10 +68,10 @@ class Environnement:
   
   #Forces (muscle gauche et muscle droit, respectivement)
   def _F1(self, theta):
-    return (self.theta1 - theta)*self.u1
+    return (theta1 - theta)*self.u1
     
   def _F2(self, theta):
-    return (self.theta2 - theta)*self.u2
+    return (theta2 - theta)*self.u2
   
   #Position angulaire de la cible
   def theta_etoile(self):
@@ -95,10 +93,12 @@ class Environnement:
     self.xS = x[2]
     self.yS = x[3]
     
-    self.y[0] = rk4(self.y[0], t, self.dt, self._up_theta)
+    self.y[0] = list(rk4(self.y[0], t, self.dt, self._up_theta))
 
     psi = self.theta_etoile() - self.y[0, 0]
-    return [psi, self.y[0, 0]]
+    psi = psi/skl
+    y = self.y[0, 0]/skl
+    return [psi, y]
 
 
 class Cible:

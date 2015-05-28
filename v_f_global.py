@@ -5,11 +5,11 @@ import numpy as np
 
 #param de simulation
 nb_pts = 500
-duree_sim = 20.0
+duree_sim = 2.0
 dt = duree_sim/float(nb_pts-1)
 
 #nombre de neurones
-N = 500
+N = 200
 
 #position agent
 xA = 0
@@ -23,10 +23,10 @@ yS = 0
 m = 0.05
 
 #Frottement
-a = 2
+a = 1
 
 #constante de raideur
-k = 3.0
+k = 2.0
 
 #bornes angulaires
 theta1 = np.pi/2.0
@@ -39,6 +39,9 @@ u2 = 1.0
 #pos et vitesse de depart
 p_theta = 0.0
 v_theta = 0.0
+
+#scaling
+skl = 10
 
 '''------------------------
 --------fonctions----------
@@ -60,16 +63,27 @@ def rk4(y, t, dt, derivs):
 
 def add(x):
   return x[0]+x[1]
+
+def multlist(a, k):
+  for i in range(len(a)):
+    a[i] = a[i]*k
+  return a
   
 #calcul des valeurs A, B, C et D
 def A(x):
-  return (k*theta2)/(2*(theta2-theta1)) -  k*(x/(theta2-theta1))
+  return (-1*k/(theta2-theta1))*x
     
 def B(x):
-  return (k*theta1)/(2*(theta1-theta2)) -  k*(x/(theta1-theta2))
+  return (-1*k/(theta1-theta2))*x
       
 def C(x):
-  return (k*theta2)/(2*(theta2- theta1)) -  k*(x/(theta2- theta1))
+  return (k/(theta2-theta1))*x
 
 def D(x):
-  return (k*theta1)/(2*(theta1- theta2)) -  k*(x/(theta1- theta2))
+  return (k/(theta1-theta2))*x
+  
+def Y(x):
+  return (k*theta2/(theta2-theta1))*x
+  
+def Z(x):
+  return (k*theta1/(theta1-theta2))*x
