@@ -88,17 +88,19 @@ class Environnement:
   
   #fct appelee par rna
   def step(self, t, x):
-    self.u1 = x[0]
-    self.u2 = x[1]
+    self.u1 = x[0]*skl
+    self.u2 = x[1]*skl
     self.xS = x[2]
     self.yS = x[3]
     
     self.y[0] = list(rk4(self.y[0], t, self.dt, self._up_theta))
-
     psi = self.theta_etoile() - self.y[0, 0]
+    
     psi = psi/skl
-    y = self.y[0, 0]/skl
-    return [psi, y]
+    print psi
+    theta = self.y[0, 0]/skl
+    
+    return [psi, theta]
 
 
 class Cible:
