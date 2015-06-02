@@ -118,5 +118,8 @@ class Cible:
     
   
   def posCible(self, t):
+    if (t >= duree_sim/2):
+      self.xS = 0
+      self.yS = 2
     return [self.xS, self.yS]
  
