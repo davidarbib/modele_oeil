@@ -61,6 +61,8 @@ class Environnement:
     #init de la dynamique
     self.y[0, 0] = p_theta
     self.y[0, 1] = v_theta
+    
+    self.psitheta = []
   
   '''----------------------
   --------Methodes---------
@@ -92,15 +94,17 @@ class Environnement:
     self.u2 = x[1]*skl
     self.xS = x[2]
     self.yS = x[3]
-    
-    self.y[0] = list(rk4(self.y[0], t, self.dt, self._up_theta))
+    #print "avant :", self.y[0]
+    self.y[0] = list(euler(self.y[0], t, self.dt, self._up_theta))
+    #print "apres :", self.y[0]
     psi = self.theta_etoile() - self.y[0, 0]
     
-    psi = psi/skl
-    print psi
-    theta = self.y[0, 0]/skl
+    theta = self.y[0, 0]
     
-    return [psi, theta]
+    #print [psi, theta]
+    #self.psitheta.append([psi, theta])
+    
+    return [psi/skl, theta/skl]
 
 
 class Cible:

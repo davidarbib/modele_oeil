@@ -6,7 +6,8 @@ import numpy as np
 #param de simulation
 nb_pts = 500
 duree_sim = 2.0
-dt = duree_sim/float(nb_pts-1)
+#dt = duree_sim/float(nb_pts-1)
+#dt = 0.001
 
 #nombre de neurones
 N = 200
@@ -16,8 +17,8 @@ xA = 0
 yA = 0
 
 #position cible
-xS = -5
-yS = 0
+xS = 0
+yS = 1
 
 #Masse
 m = 0.05
@@ -41,7 +42,7 @@ p_theta = 0.0
 v_theta = 0.0
 
 #scaling
-skl = 100
+skl = 3.14
 
 '''------------------------
 --------fonctions----------
