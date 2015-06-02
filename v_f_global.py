@@ -6,7 +6,7 @@ import numpy as np
 #param de simulation
 nb_pts = 500
 duree_sim = 2.0
-#dt = duree_sim/float(nb_pts-1)
+dt = duree_sim/float(nb_pts-1)
 #dt = 0.001
 
 #nombre de neurones
@@ -18,7 +18,7 @@ yA = 0
 
 #position cible
 xS = 0
-yS = 1
+yS = 0
 
 #Masse
 m = 0.05
@@ -43,6 +43,8 @@ v_theta = 0.0
 
 #scaling
 skl = 3.14
+
+#radius = 1
 
 '''------------------------
 --------fonctions----------
@@ -88,3 +90,9 @@ def Y(x):
   
 def Z(x):
   return (k*theta1/(theta1-theta2))*x
+  
+def Aprime(x):
+  return (k/(theta2-theta1))*x
+  
+def Bprime(x):
+  return (k/(theta1-theta2))*x
