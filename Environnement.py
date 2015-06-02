@@ -104,7 +104,7 @@ class Environnement:
     
     self.tab_psi.append(psi)
     self.tab_theta.append(theta)
-    return -self.theta_etoile()/skl
+    return (-psi-theta)/skl
 
 class Cible:
   
