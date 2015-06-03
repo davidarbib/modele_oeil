@@ -6,7 +6,7 @@ import numpy as np
 #param de simulation
 nb_pts = 500
 duree_sim = 2.0
-#dt = duree_sim/float(nb_pts-1)
+dt = duree_sim/float(nb_pts-1)
 #dt = 0.001
 
 #nombre de neurones
@@ -72,16 +72,16 @@ def multlist(a, k):
   
 #calcul des valeurs A, B, C et D
 def A(x):
-  return (-1*k/(theta2-theta1))*x
+  return (-k/(theta2-theta1))*x
     
 def B(x):
-  return (-1*k/(theta1-theta2))*x
+  return (-k/(theta1-theta2))*x
       
 def C(x):
-  return (k/(theta2-theta1))*x
+  return (-k/(theta2-theta1))*x
 
 def D(x):
-  return (k/(theta1-theta2))*x
+  return (-k/(theta1-theta2))*x
   
 def Y(x):
   return (k*theta2/(theta2-theta1))*x
