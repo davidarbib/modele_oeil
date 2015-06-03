@@ -10,7 +10,7 @@ dt = duree_sim/float(nb_pts-1)
 #dt = 0.001
 
 #nombre de neurones
-N = 200
+N = 500
 
 #position agent
 xA = 0
@@ -21,13 +21,13 @@ xS = 0
 yS = 1
 
 #Masse
-m = 0.05
+m = 0.01
 
 #Frottement
-a = 1
+a = 0.5
 
 #constante de raideur
-k = 2.0
+k = 7.0
 
 #bornes angulaires
 theta1 = np.pi/2.0
