@@ -4,10 +4,10 @@ import numpy as np
 ----------------------'''
 
 #param de simulation
-nb_pts = 500
+nb_pts = 2000
 duree_sim = 2.0
-dt = duree_sim/float(nb_pts-1)
-#dt = 0.001
+#dt = 0.01
+dt = 0.001
 
 #nombre de neurones
 N = 500
@@ -24,10 +24,10 @@ yS = 1
 m = 0.01
 
 #Frottement
-a = 0.5
+a = 1.0
 
 #constante de raideur
-k = 7.0
+k = 0.5
 
 #bornes angulaires
 theta1 = np.pi/2.0
@@ -44,6 +44,9 @@ v_theta = 0.0
 #scaling
 skl = 3.14
 
+#intercept range
+i_angle = np.pi/2
+i_command = 2
 '''------------------------
 --------fonctions----------
 ------------------------'''

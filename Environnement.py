@@ -63,6 +63,7 @@ class Environnement:
     self.y[0, 1] = v_theta
     
     self.psitheta = []
+    self.tab_vtheta = []
   
   '''----------------------
   --------Methodes---------
@@ -94,14 +95,17 @@ class Environnement:
     self.u2 = x[1]*skl
     self.xS = x[2]
     self.yS = x[3]
+    
     #print "avant :", self.y[0]
     self.y[0] = list(euler(self.y[0], t, self.dt, self._up_theta))
     #print "apres :", self.y[0]
-    psi = self.theta_etoile() - self.y[0, 0]
     
+    psi = self.theta_etoile() - self.y[0, 0]    
     theta = self.y[0, 0]
+    vtheta = self.y[0, 1]
     
-    #print [psi, theta]
+    self.tab_vtheta.append(vtheta)
+    print [t, self.theta_etoile(), theta, vtheta]
     #self.psitheta.append([psi, theta])
     
     return [psi/skl, theta/skl]
@@ -119,8 +123,10 @@ class Cible:
     
   
   def posCible(self, t):
+    '''
     if t >= duree_sim/2:  #au milieu de la simulation : cible droit devant
       self.xS = 0
       self.yS = 2
+    '''
     return [self.xS, self.yS]
  
