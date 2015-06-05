@@ -24,10 +24,10 @@ yS = 1
 m = 0.01
 
 #Frottement
-a = 1.0
+a = 0.6
 
 #constante de raideur
-k = 0.5
+k = 4.5
 
 #bornes angulaires
 theta1 = np.pi/2.0
@@ -73,6 +73,13 @@ def multlist(a, k):
     a[i] = a[i]*k
   return a
   
+def matrixIndex(m, col, v):
+  for i in range(len(m)):
+    if(m[i][col] == v):
+      return i
+  print "Not found"
+  return None
+
 #calcul des valeurs A, B, C et D
 def A(x):
   return (-k/(theta2-theta1))*x

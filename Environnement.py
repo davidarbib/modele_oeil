@@ -64,6 +64,8 @@ class Environnement:
     
     self.psitheta = []
     self.tab_vtheta = []
+    self.tab_sum = []
+    self.i = 0
   
   '''----------------------
   --------Methodes---------
@@ -105,9 +107,9 @@ class Environnement:
     vtheta = self.y[0, 1]
     
     self.tab_vtheta.append(vtheta)
-    print [t, self.theta_etoile(), theta, vtheta]
+    self.tab_sum.append([t, self.theta_etoile(), theta, vtheta])
     #self.psitheta.append([psi, theta])
-    
+    self.i = self.i+1
     return [psi/skl, theta/skl]
 
 
