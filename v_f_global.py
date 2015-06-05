@@ -24,10 +24,10 @@ yS = 1
 m = 0.01
 
 #Frottement
-a = 0.6
+a = 0.9
 
 #constante de raideur
-k = 4.5
+k = 6.0
 
 #bornes angulaires
 theta1 = np.pi/2.0
