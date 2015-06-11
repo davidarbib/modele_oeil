@@ -125,10 +125,9 @@ class Cible:
     
   
   def posCible(self, t):
-    '''
+    
     if t >= duree_sim/2:  #au milieu de la simulation : cible droit devant
       self.xS = 0
       self.yS = 2
-    '''
     return [self.xS, self.yS]
  
