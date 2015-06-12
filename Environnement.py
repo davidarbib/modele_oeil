@@ -106,7 +106,7 @@ class Environnement:
     theta = self.y[0, 0]
     vtheta = self.y[0, 1]
     
-    self.tab_vtheta.append(vtheta)
+    self.tab_vtheta.append(abs(vtheta))
     self.tab_sum.append([t, self.theta_etoile(), theta, vtheta])
     #self.psitheta.append([psi, theta])
     self.i = self.i+1
