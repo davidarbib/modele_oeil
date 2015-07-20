@@ -43,9 +43,6 @@ class Environnement:
   ----------------------'''
   
   def __init__(self, ag_x, ag_y, dt, eff_m, eff_u1, eff_u2, eff_a, p_theta, v_theta):
-    '''Classe Environnement : entite qui regroupe l'agent, la cible et leurs proprietes
-    (attention : certaines proprietes nexisteront plus en version de stimulation live)
-    '''
     
     self.xA = ag_x
     self.yA = ag_y
@@ -93,36 +90,52 @@ class Environnement:
   
   #fct appelee par rna
   def step(self, t, x):
+    
+    #recuperation des commandes et position de la cible
     self.u1 = x[0]*skl
     self.u2 = x[1]*skl
     self.xS = x[2]
     self.yS = x[3]
     
-    #print "avant :", self.y[0]
+    #recuperation position et vitesse calculees
     self.y[0] = list(euler(self.y[0], t, self.dt, self._up_theta))
-    #print "apres :", self.y[0]
     
-    psi = self.theta_etoile() - self.y[0, 0]    
+    psi = self.theta_etoile() - self.y[0, 0]
     theta = self.y[0, 0]
     vtheta = self.y[0, 1]
     
+    #data-filling
     self.tab_vtheta.append(abs(vtheta))
     self.tab_sum.append([t, self.theta_etoile(), theta, vtheta])
-    #self.psitheta.append([psi, theta])
     self.i = self.i+1
+    
     return [psi/skl, theta/skl]
 
+'''-----------------
+---   La cible   ---
+-----------------'''
 
 class Cible:
+  
+  '''---------------------
+  -------Attributs--------
+  ---------------------'''
   
   xS = 0
   yS = 0
   dt = 0
   
+  '''----------------------
+  ------Constructeur-------
+  ----------------------'''
+  
   def __init__(self, xS, yS, dt):
     self.xS = xS
     self.yS = yS
-    
+
+  '''----------------------
+  --------Methodes---------
+  ----------------------'''
   
   def posCible(self, t):
     

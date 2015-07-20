@@ -6,7 +6,6 @@ import numpy as np
 #param de simulation
 nb_pts = 2000
 duree_sim = 2.0
-#dt = 0.01
 dt = 0.001
 
 #nombre de neurones
@@ -47,6 +46,7 @@ skl = 3.14
 #intercept range
 i_angle = np.pi/2
 i_command = 2
+
 '''------------------------
 --------fonctions----------
 ------------------------'''
@@ -65,14 +65,17 @@ def rk4(y, t, dt, derivs):
   y_next = y + (k0 + 2*k1 + 2*k2 + k3)/6
   return y_next
 
+
 def add(x):
   return x[0]+x[1]
 
+#multiplication d'une liste par un scalaire
 def multlist(a, k):
   for i in range(len(a)):
     a[i] = a[i]*k
   return a
-  
+
+#index d'une ligne de matrice 'm' contenant element 'v' a la colonne 'col'
 def matrixIndex(m, col, v):
   for i in range(len(m)):
     if(m[i][col] == v):
@@ -80,7 +83,7 @@ def matrixIndex(m, col, v):
   print "Not found"
   return None
 
-#calcul des valeurs A, B, C et D
+#calcul des valeurs A, B, C, D, Y et Z
 def A(x):
   return (-k/(theta2-theta1))*x
     
